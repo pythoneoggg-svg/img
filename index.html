@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jugabadeyla — Wlnstoh</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;800&family=Cormorant+Garamond:wght@300;400;600&display=swap');
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            background: #0a0505;
+            color: #d4c5a0;
+            font-family: 'Cormorant Garamond', serif;
+            overflow-x: hidden;
+        }
+        
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: radial-gradient(ellipse at 30% 20%, rgba(180,130,60,0.08) 0%, transparent 60%),
+                        radial-gradient(ellipse at 70% 60%, rgba(120,30,30,0.06) 0%, transparent 60%),
+                        radial-gradient(ellipse at 50% 80%, rgba(180,130,60,0.04) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 0;
+        }
+        
+        nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
+            background: linear-gradient(to bottom, rgba(10,5,5,0.95), transparent);
+        }
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 22px;
+            letter-spacing: 4px;
+            color: #c9a050;
+            text-transform: uppercase;
+        }
+        .nav-links { display: flex; gap: 40px; list-style: none; }
+        .nav-links a {
+            color: #8a7a5a;
+            text-decoration: none;
+            font-size: 13px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            transition: color 0.4s;
+        }
+        .nav-links a:hover { color: #c9a050; }
+        
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            z-index: 1;
+        }
+        .hero-content { text-align: center; }
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 80px;
+            font-weight: 800;
+            letter-spacing: 8px;
+            color: #c9a050;
+            text-shadow: 0 0 80px rgba(201,160,80,0.3);
+            margin-bottom: 10px;
+        }
+        .hero .subtitle {
+            font-size: 18px;
+            letter-spacing: 6px;
+            color: #8a7a5a;
+            text-transform: uppercase;
+            margin-bottom: 40px;
+        }
+        .hero .line {
+            width: 100px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #c9a050, transparent);
+            margin: 0 auto 40px;
+        }
+        .btn {
+            display: inline-block;
+            padding: 16px 50px;
+            border: 1px solid #c9a050;
+            color: #c9a050;
+            text-decoration: none;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            font-size: 12px;
+            transition: all 0.4s;
+        }
+        .btn:hover {
+            background: #c9a050;
+            color: #0a0505;
+        }
+        
+        section {
+            padding: 80px 40px;
+            max-width: 1000px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+        section h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 36px;
+            color: #c9a050;
+            text-align: center;
+            margin-bottom: 60px;
+            letter-spacing: 4px;
+        }
+        
+        .products {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+        }
+        .product {
+            background: rgba(201,160,80,0.03);
+            border: 1px solid rgba(201,160,80,0.1);
+            padding: 30px;
+            text-align: center;
+            transition: all 0.4s;
+        }
+        .product:hover {
+            border-color: rgba(201,160,80,0.3);
+            background: rgba(201,160,80,0.06);
+            transform: translateY(-5px);
+        }
+        .product img {
+            width: 120px;
+            height: 180px;
+            object-fit: cover;
+            margin: 0 auto 25px;
+            border: 1px solid rgba(201,160,80,0.3);
+        }
+        .product h3 {
+            font-family: 'Playfair Display', serif;
+            color: #c9a050;
+            font-size: 18px;
+            letter-spacing: 3px;
+            margin-bottom: 10px;
+        }
+        .product .desc {
+            color: #6a5a4a;
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+        .product .price {
+            font-size: 22px;
+            color: #d4c5a0;
+            letter-spacing: 2px;
+        }
+        
+        .about-text {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto;
+            font-size: 18px;
+            line-height: 1.8;
+            color: #8a7a5a;
+        }
+        .about-img {
+            width: 100%;
+            max-width: 600px;
+            height: 300px;
+            object-fit: cover;
+            margin: 30px auto;
+            display: block;
+            border: 1px solid rgba(201,160,80,0.2);
+        }
+        
+        .contacts {
+            text-align: center;
+            color: #6a5a4a;
+            font-size: 16px;
+            line-height: 2;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 40px;
+            color: #4a3a2a;
+            font-size: 12px;
+            letter-spacing: 2px;
+            border-top: 1px solid rgba(201,160,80,0.1);
+            position: relative;
+            z-index: 1;
+        }
+        
+        @media (max-width: 600px) {
+            .hero h1 { font-size: 40px; letter-spacing: 4px; }
+            nav { padding: 15px 20px; }
+            .nav-links { gap: 15px; }
+            .nav-links a { font-size: 10px; letter-spacing: 1px; }
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <div class="logo">Jugabadeyla</div>
+    <ul class="nav-links">
+        <li><a href="#products">Коллекция</a></li>
+        <li><a href="#about">О бренде</a></li>
+        <li><a href="#contact">Контакты</a></li>
+    </ul>
+</nav>
+
+<header class="hero">
+    <div class="hero-content">
+        <h1>Wlnstoh</h1>
+        <p class="subtitle">Табачный дом Jugabadeyla</p>
+        <div class="line"></div>
+        <a href="#products" class="btn">Смотреть коллекцию</a>
+    </div>
+</header>
+
+<section id="products">
+    <h2>Коллекция</h2>
+    <div class="products">
+        <div class="product">
+            <img src="img/gold.jpg" alt="Wlnstoh Gold">
+            <h3>Wlnstoh Gold</h3>
+            <p class="desc">Классический бленд. Мягкий вкус, глубокий аромат.</p>
+            <div class="price">1 200 ₽</div>
+        </div>
+        <div class="product">
+            <img src="img/midnight.jpg" alt="Wlnstoh Midnight">
+            <h3>Wlnstoh Midnight</h3>
+            <p class="desc">Тёмный сорт. Крепкий, насыщенный, ночной.</p>
+            <div class="price">1 500 ₽</div>
+        </div>
+        <div class="product">
+            <img src="img/velvet.jpg" alt="Wlnstoh Velvet">
+            <h3>Wlnstoh Velvet</h3>
+            <p class="desc">Премиум-линейка. Бархатный вкус, долгое послевкусие.</p>
+            <div class="price">1 800 ₽</div>
+        </div>
+    </div>
+</section>
+
+<section id="about">
+    <h2>О бренде</h2>
+    <p class="about-text">
+        Jugabadeyla — табачный дом с историей. Мы отбираем лучшие сорта табака, 
+        выдерживаем их в дубовых погребах и создаём сигареты, которые становятся 
+        частью вашего ритуала. Wlnstoh — это не просто сигареты. Это вкус, 
+        который остаётся в памяти.
+    </p>
+    <img src="img/about.jpg" alt="Производство" class="about-img">
+</section>
+
+<section id="contact">
+    <h2>Контакты</h2>
+    <p class="contacts">
+        📍 Москва, Кузнецкий Мост, 14<br>
+        📞 +7 (495) 123-45-67<br>
+        ✉️ info@jugabadeyla.ru<br>
+        🕐 Пн-Сб: 11:00 – 21:00
+    </p>
+</section>
+
+<footer>
+    <p>© 2026 Jugabadeyla. Wlnstoh — зарегистрированная торговая марка.</p>
+</footer>
+
+</body>
+</html>
